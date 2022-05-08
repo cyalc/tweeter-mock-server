@@ -3,10 +3,10 @@ use crate::user::User;
 
 #[derive(Serialize)]
 pub(crate) struct Tweet {
-    pub id: String,
-    pub user: User,
-    pub body: String,
-    pub like_count: u64,
+    id: String,
+    user: User,
+    body: String,
+    like_count: u64,
 }
 
 impl Tweet {
@@ -14,21 +14,13 @@ impl Tweet {
         vec![
             Tweet {
                 id: "4235".to_string(),
-                user: User {
-                    id: "123".to_string(),
-                    name: "Cagri Yalcinsoy".to_string(),
-                    user_name: "cyalc".to_string(),
-                },
+                user: User::get("1").await,
                 body: "What a tweet?".to_string(),
                 like_count: 45,
             },
             Tweet {
                 id: "42335".to_string(),
-                user: User {
-                    id: "1".to_string(),
-                    name: "Elon Musk".to_string(),
-                    user_name: "elon".to_string()
-                },
+                user: User::get("2").await,
                 body: "What a tweet huh?".to_string(),
                 like_count: 456,
             },
