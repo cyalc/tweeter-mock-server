@@ -13,10 +13,12 @@ fn index() -> &'static str {
 
 #[rocket::main]
 async fn main() {
-    // handle returned error
-    rocket::build()
+    if let Err(e) = rocket::build()
         .mount("/", routes![index])
         .mount("/", routes![timeline])
         .launch()
-        .await;
+        .await {
+        println!("Error when launching rocket.");
+        drop(e);
+    };
 }
